@@ -1,0 +1,140 @@
+﻿@page "/"
+
+@using System.Linq
+@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+
+<audio id="audio-background" loop>
+    <source src="10 - AC_DC - T.N.T.mp3" type="audio/mpeg">
+    Seu navegador não suporta a tag de áudio.
+</audio>
+
+
+@code {
+    private bool isStopButtonVisible = false;
+
+    private async Task PlayAudio()
+    {
+        isStopButtonVisible = true;
+        await JSRuntime.InvokeVoidAsync("playAudio");
+        await JSRuntime.InvokeVoidAsync("flashingLights");
+        await JSRuntime.InvokeVoidAsync("ToggleBackgroundAndWatermark");
+    }
+
+    private async Task StopAudio()
+    {
+        isStopButtonVisible = false;
+        await JSRuntime.InvokeVoidAsync("stopAudio");
+    }
+}
+
+<div class="row">
+    <div class="text-center">
+        <button style="align-self:center" class="h1" @onclick="PlayAudio">Clique - Eliezer José de Souza - aqui</button>
+        @if (isStopButtonVisible)
+        {
+            <button style="align-self:center" class="h1" @onclick="StopAudio">Parar Música</button>
+        }
+    </div>
+
+    <div class="col-md-4">
+        <h3>Informações Pessoais</h3>
+        <ul class="list-unstyled">
+            <li><strong>E-mail:</strong> eliezerjs.df@gmail.com</li>
+            <li><strong>Telefone:</strong> <a href="https://wa.me/5577991310352" target="_blank">(77) 99131-0352</a></li>
+            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/eliezerjs/" target="_blank">https://www.linkedin.com/in/eliezerjs/</a></li>
+        </ul>
+        <h3>Habilidades</h3>
+        @{
+            List<string> habilidades = new List<string>
+        {
+        "C#", "ASP.NET", "MVC", "Entity Framework", "LINQ",
+        "Web Services (REST e SOAP)", "Angular", "NHibernate",
+        "TDD", "DDD", "Razor", "SQL Server", "Oracle", ".NET Core",
+        "Visual Studio", "Azure", "ASP.NET Core", "WinForms",
+        "Web Forms", "IIS", "SignalR", "WCF", "ADO.NET",
+        "Entity Framework Core", "Entity Framework 6", "Dapper",
+        "Azure Service Bus", "Azure DevOps", "Git", "SVN",
+        "Team Foundation Server", "NUnit", "PL/SQL"
+        };
+        }
+
+        @if (habilidades.Any())
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        @foreach (var habilidade in habilidades.Take(habilidades.Count / 2))
+                        {
+                            <li>@habilidade</li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        @foreach (var habilidade in habilidades.Skip(habilidades.Count / 2))
+                        {
+                            <li>@habilidade</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-8">
+        <h2>Experiência Profissional</h2>
+        <br>
+        <div class="experience-block">
+            <h4 class="company">Niteo</h4>
+            <h5 class="position">Desenvolvedor Sênior</h5>
+            <ul class="experience-details">
+                <li>Desenvolvimento de aplicações em .NET 5, Angular.</li>
+                <li>Criação e manutenção de diversas aplicações web e integração de sistemas.</li>
+                <li>Criação de projeto para monitoramento de antenas Ericsson.</li>
+            </ul>
+        </div>
+        <div class="experience-block">
+            <h4 class="company">TCS TATA</h4>
+            <h5 class="position">Desenvolvedor Sênior</h5>
+            <ul class="experience-details">
+                <li>Criação de Soluções com C# e ASP.NET e otimização de Querys</li>
+                <li>Implementação de Micro serviços e manutenção em serviços SOAP.</li>
+                <li>Manutenção no portal Itaú Corretora.</li>
+            </ul>
+        </div>
+        <div class="experience-block">
+            <h4 class="company">STEFANINI</h4>
+            <h5 class="position">Desenvolvedor Sênior</h5>
+            <ul class="experience-details">
+                <li>Criação de aplicações Web para atender demandas de sistemas clínicos.</li>
+                <li>Criação de micro serviços, atuação back e front.</li>
+                <li>Atuação no cliente CASSI.</li>
+            </ul>
+        </div>
+        <div class="experience-block">
+            <h4 class="company">CAST GROUP</h4>
+            <h5 class="position">Desenvolvedor Sênior</h5>
+            <ul class="experience-details">
+                <li>Manutenção em diversos sistemas e serviços .NET, ASP NET, VB .NET e JAVA.</li>
+                <li>Sustentação de Sistemas do cliente ANAC. (Sistema de controle aéreos).</li>
+                <li>Atuação no cliente ANAC - Sustentação de Sistemas.</li>
+            </ul>
+        </div>
+        <div class="experience-block">
+            <h4 class="company">BASIS</h4>
+            <h5 class="position">Desenvolvedor Sênior</h5>
+            <ul class="experience-details">
+                <li>Desenvolvimento .NET, utilizando C#, ASP.NET, MVC, Web API e Entity Framework.</li>
+                <li>Atuação em projetos de desenvolvimento web, manutenção de portais e bases de dados.</li>
+                <li>Atuação no cliente AGU - Sustentação de Sistemas.</li>
+            </ul>
+        </div>
+        <br>
+        <h2>Formação Acadêmica</h2>
+        <div class="experience-block">
+            <h5 class="position">Universidade do Distrito Federal</h5>
+            <p>Análise e Desenvolvimento de Sistemas</p>
+        </div>
+        <br>
+    </div>
+</div>
