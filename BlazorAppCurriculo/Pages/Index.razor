@@ -30,10 +30,15 @@
 
 <div class="row">
     <div class="text-center">
-        <button style="align-self:center" class="h1" @onclick="PlayAudio">Clique - Eliezer José de Souza - aqui</button>
+        <button style="align-self:center" class="h1">Eliezer José de Souza</button>
+
         @if (isStopButtonVisible)
         {
-            <button style="align-self:center" class="h1" @onclick="StopAudio">Parar Música</button>
+            <button style="display: flex;justify-content: flex-end;" class="h3" @onclick="StopAudio">Parar Música</button>
+        }
+        else
+        {
+            <button style="display: flex;justify-content: flex-end;" class="h3" @onclick="PlayAudio">Relaxar ao ler Currículo.</button>
         }
     </div>
 
@@ -55,7 +60,12 @@
         "Web Forms", "IIS", "SignalR", "WCF", "ADO.NET",
         "Entity Framework Core", "Entity Framework 6", "Dapper",
         "Azure Service Bus", "Azure DevOps", "Git", "SVN",
-        "Team Foundation Server", "NUnit", "PL/SQL"
+        "Team Foundation Server", "NUnit", "PL/SQL",
+        "Java", "Spring", "Hibernate", "JPA", "JDBC", 
+        "JSP", "JSF", "Servlets", "Maven", "Tomcat", 
+        "GlassFish", "WildFly", "JUnit", "Mockito", "Kafka", "Spring Boot" 
+
+
         };
         }
 
