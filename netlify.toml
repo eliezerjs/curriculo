@@ -1,0 +1,6 @@
+[build]
+  publish = "bin/Release/net7.0/publish/wwwroot"
+  command = "dotnet publish -c Release"
+
+[context.production.environment]
+  DOTNET_VERSION = "7.0.0"
